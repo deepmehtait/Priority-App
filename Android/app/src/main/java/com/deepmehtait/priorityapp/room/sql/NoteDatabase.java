@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.deepmehtait.priorityapp.room.dao.NoteDao;
 import com.deepmehtait.priorityapp.room.entity.Note;
 
-@Database(entities = Note.class, version = 1)
+@Database(entities = { Note.class }, version = 1, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
 
     private static NoteDatabase instance;
