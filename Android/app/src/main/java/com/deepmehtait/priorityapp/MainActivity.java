@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.deepmehtait.priorityapp.adaptor.NoteAdaptor;
 import com.deepmehtait.priorityapp.room.entity.Note;
 import com.deepmehtait.priorityapp.viewmodel.NoteViewModel;
 
@@ -22,12 +25,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_display);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        final NoteAdaptor noteAdaptor = new NoteAdaptor();
+        recyclerView.setAdapter(noteAdaptor);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(List<Note> notes) {
                 // Update Recycler View here.
-                Toast.makeText(MainActivity.this, "on Changed", Toast.LENGTH_SHORT).show();
+                noteAdaptor.setNotes(notes);
             }
         });
     }
