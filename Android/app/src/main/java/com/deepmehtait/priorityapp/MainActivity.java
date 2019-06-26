@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all_notes:
-                noteViewModel.getAllNotes();
+                noteViewModel.deleteAllNotes();
                 Toast.makeText(this, "Deleted All Notes", Toast.LENGTH_SHORT).show();
                 return true;
              default:
