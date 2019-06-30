@@ -12,11 +12,12 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-public class AddNoteActivity extends AppCompatActivity {
+public class AddEditNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_TITLE = "com.deepmehtait.priorityapp.EXTRA_TITLE";
     public static final String EXTRA_DESC = "com.deepmehtait.priorityapp.EXTRA_DESC";
     public static final String EXTRA_PRIORITY = "com.deepmehtait.priorityapp.EXTRA_PRIORITY";
+    public static final String EXTRA_ID = "com.deepmehtait.priorityapp.EXTRA_ID";
 
     private EditText etTitle;
     private EditText etDescription;
@@ -35,7 +36,16 @@ public class AddNoteActivity extends AppCompatActivity {
         npPriority.setMinValue(1);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Note");
+        Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Note");
+            etTitle.setText(intent.getStringExtra(EXTRA_TITLE));
+            etDescription.setText(intent.getStringExtra(EXTRA_DESC));
+            npPriority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
+        } else {
+            setTitle("Add Note");
+        }
+
 
     }
 
@@ -55,9 +65,14 @@ public class AddNoteActivity extends AppCompatActivity {
         data.putExtra(EXTRA_DESC, desc);
         data.putExtra(EXTRA_PRIORITY, priority);
 
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+
+        if (id != -1) {
+            data.putExtra(EXTRA_ID, id);
+        }
+
         setResult(RESULT_OK, data);
         finish();
-
     }
 
     @Override
@@ -73,8 +88,8 @@ public class AddNoteActivity extends AppCompatActivity {
             case R.id.save_note:
                 saveNote();
                 return true;
-             default:
-                 return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
     }
