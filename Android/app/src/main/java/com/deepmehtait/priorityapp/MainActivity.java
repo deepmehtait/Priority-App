@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         });
         RecyclerView recyclerView = findViewById(R.id.recycler_view_display);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
 
         final NoteAdaptor noteAdaptor = new NoteAdaptor();
         recyclerView.setAdapter(noteAdaptor);
