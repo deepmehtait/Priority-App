@@ -14,3 +14,9 @@ Installation is simple.
 `git clone https://github.com/deepmehtait/Priority-App.git`
 <br/>
 Import into android studio. -> Gradle sync-> Run.
+
+## 📄 License
+Priority App is MIT licensed, as found in the [LICENSE][l] file.
+
+[l]: https://github.com/deepmehtait/Priority-App/blob/master/LICENSE
+
