@@ -1,5 +1,5 @@
 # Priority App
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ## Introduction
 
 > Learning Android Architecture and design patterns with the help of simple priority application. App mainly focus on using MVVM Android Architecture for developing this application. You can add, delete, update priorities in range of 1 to 10. You will be able to view it in order of descending order.
